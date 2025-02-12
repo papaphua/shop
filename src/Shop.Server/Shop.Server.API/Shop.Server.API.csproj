@@ -7,12 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Shop.Client\Shop.Client.Admin\Shop.Client.Admin.csproj" />
-      <ProjectReference Include="..\Shop.Server.BLL\Shop.Server.BLL.csproj" />
+        <ProjectReference Include="..\..\Shop.Client\Shop.Client.Admin\Shop.Client.Admin.csproj"/>
+        <ProjectReference Include="..\Shop.Server.BLL\Shop.Server.BLL.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.13" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.13"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.13">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
 </Project>
