@@ -12,6 +12,19 @@ public sealed class UserService(
     IMapper mapper)
     : IUserService
 {
+    public async Task<Result<UserDto>> LoginAsync(UserLoginDto dto)
+    {
+        var user = await userRepository.GetByEmailAsync(dto.Email);
+
+        if (user == null)
+            return UserErrors.InvalidEmail;
+
+        if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+            return UserErrors.InvalidPassword;
+
+        return mapper.Map<UserDto>(user);
+    }
+
     public async Task<Result> RegisterAsync(UserRegisterDto dto)
     {
         if (dto.Password != dto.ConfirmPassword)
