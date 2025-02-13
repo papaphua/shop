@@ -1,3 +1,8 @@
-﻿namespace Shop.Shared.Users;
+﻿using Shop.Shared.Core.Results;
 
-public interface IUserService;
+namespace Shop.Shared.Users;
+
+public interface IUserService
+{
+    Task<Result> RegisterAsync(UserRegisterDto dto);
+}

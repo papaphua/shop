@@ -9,7 +9,7 @@ public sealed class CartItemRepository(ApplicationDbContext dbContext)
 {
     private readonly ApplicationDbContext _dbContext = dbContext;
 
-    public async Task<PagedList<CartItem>> GetAsync(int userId, PagingQuery? paging)
+    public async Task<PagedList<CartItem>> GetAsync(PagingQuery? paging, int userId)
     {
         var query = _dbContext.Set<CartItem>()
             .Include(item => item.Product)

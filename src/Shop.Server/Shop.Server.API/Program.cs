@@ -17,10 +17,16 @@ var configuration = builder.Configuration;
 
 services.AddControllers();
 
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
+
 services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 services.AddScoped<IUnitOfWork>(provider =>
     provider.GetRequiredService<ApplicationDbContext>());
+
+builder.Services.AddAutoMapper(options =>
+    options.AddMaps(typeof(UserMaps).Assembly));
 
 services.AddScoped<IUserRepository, UserRepository>();
 services.AddScoped<IProductRepository, ProductRepository>();
@@ -31,6 +37,12 @@ services.AddScoped<IProductService, ProductService>();
 services.AddScoped<ICartItemService, CartItemService>();
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();

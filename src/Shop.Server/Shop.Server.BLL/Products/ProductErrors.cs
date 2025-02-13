@@ -1,3 +1,9 @@
-﻿namespace Shop.Server.BLL.Products;
+﻿using Shop.Shared.Core.Results;
 
-public static class ProductErrors;
+namespace Shop.Server.BLL.Products;
+
+public static class ProductErrors
+{
+    public static readonly Error NotFound = Error.NotFound(
+        "Product.NotFound", "Product not found.");
+}

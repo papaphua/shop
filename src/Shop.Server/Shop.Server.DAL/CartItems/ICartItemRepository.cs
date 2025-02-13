@@ -5,7 +5,7 @@ namespace Shop.Server.DAL.CartItems;
 
 public interface ICartItemRepository : IRepository<CartItem, int>
 {
-    Task<PagedList<CartItem>> GetAsync(int userId, PagingQuery? query);
+    Task<PagedList<CartItem>> GetAsync(PagingQuery? query, int userId);
 
     Task<CartItem?> GetByIdsAsync(int userId, int productId);
 }
