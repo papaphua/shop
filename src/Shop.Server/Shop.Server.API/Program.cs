@@ -1,9 +1,15 @@
 using Microsoft.EntityFrameworkCore;
+using Shop.Server.BLL.CartItems;
+using Shop.Server.BLL.Products;
+using Shop.Server.BLL.Users;
 using Shop.Server.DAL;
 using Shop.Server.DAL.CartItems;
 using Shop.Server.DAL.Core;
 using Shop.Server.DAL.Products;
 using Shop.Server.DAL.Users;
+using Shop.Shared.CartItems;
+using Shop.Shared.Products;
+using Shop.Shared.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -19,6 +25,10 @@ services.AddScoped<IUnitOfWork>(provider =>
 services.AddScoped<IUserRepository, UserRepository>();
 services.AddScoped<IProductRepository, ProductRepository>();
 services.AddScoped<ICartItemRepository, CartItemRepository>();
+
+services.AddScoped<IUserService, UserService>();
+services.AddScoped<IProductService, ProductService>();
+services.AddScoped<ICartItemService, CartItemService>();
 
 var app = builder.Build();
 
