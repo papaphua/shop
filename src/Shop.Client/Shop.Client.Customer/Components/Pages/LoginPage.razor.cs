@@ -12,7 +12,9 @@ public partial class LoginPage : ComponentBase
 
     [Inject] public IUserService UserService { get; set; }
 
-    [SupplyParameterFromForm] private UserLoginDto LoginDto { get; set; } = new();
+    [Inject] public NavigationManager NavigationManager { get; set; }
+
+    [SupplyParameterFromForm] private UserLoginDto LoginDto { get; set;  } = new();
 
     private async Task LoginAsync()
     {
@@ -28,6 +30,8 @@ public partial class LoginPage : ComponentBase
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(principal);
+
+            NavigationManager.NavigateTo("/products");
         }
     }
 }

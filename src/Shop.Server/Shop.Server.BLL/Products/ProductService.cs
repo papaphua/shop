@@ -13,6 +13,11 @@ public sealed class ProductService(
     IMapper mapper)
     : IProductService
 {
+    public async Task<Result<ProductDto>> GetByIdAsync(int id)
+    {
+        return mapper.Map<ProductDto>(await productRepository.GetByIdAsync(id));
+    }
+
     public async Task<Result<PagedList<ProductDto>>> GetAsync(PagingQuery? query)
     {
         var products = await productRepository.GetAsync(query);
