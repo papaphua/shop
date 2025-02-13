@@ -2,4 +2,7 @@
 
 namespace Shop.Server.DAL.Users;
 
-public interface IUserRepository : IRepository<User, int>;
+public interface IUserRepository : IRepository<User, int>
+{
+    Task<User?> GetByEmailAsync(string email);
+};
