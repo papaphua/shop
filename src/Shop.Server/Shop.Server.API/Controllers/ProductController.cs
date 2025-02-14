@@ -10,10 +10,22 @@ namespace Shop.Server.API.Controllers;
 [Route("api/product")]
 public sealed class ProductController(IProductService productService) : ApiController
 {
+    [Authorize]
     [HttpGet]
     public async Task<IResult> Get([FromQuery] PagingQuery? query)
     {
         var result = await productService.GetAsync(query);
+
+        return result.IsSuccess
+            ? Results.Ok(result.Value)
+            : result.ToProblemDetails();
+    }
+    
+    [Authorize(Roles = "1")]
+    [HttpGet("{id:int}")]
+    public async Task<IResult> GetById(int id)
+    {
+        var result = await productService.GetByIdAsync(id);
 
         return result.IsSuccess
             ? Results.Ok(result.Value)

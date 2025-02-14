@@ -7,7 +7,7 @@ namespace Shop.Server.BLL.Products;
 public interface IProductService
 {
     Task<Result<ProductDto>> GetByIdAsync(int id);
-    
+
     Task<Result<PagedList<ProductDto>>> GetAsync(PagingQuery? query);
 
     Task<Result> CreateAsync(ProductDto dto);

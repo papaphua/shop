@@ -10,4 +10,4 @@ public sealed class UserMaps : Profile
     {
         CreateMap<User, UserDto>();
     }
-};
+}

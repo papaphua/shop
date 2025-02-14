@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 using Shop.Server.BLL.Core.Results;
 using Shop.Server.DAL.Core;
 using Shop.Server.DAL.Users;
@@ -14,15 +18,39 @@ public sealed class UserService(
 {
     public async Task<Result<UserDto>> LoginAsync(UserLoginDto dto)
     {
-        var user = await userRepository.GetByEmailAsync(dto.Email);
+        var result = await ValidateUserAsync(dto);
 
-        if (user == null)
-            return UserErrors.InvalidEmail;
+        if (!result.IsSuccess)
+            return Result<UserDto>.Failure(result.Error!);
 
-        if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
-            return UserErrors.InvalidPassword;
+        return mapper.Map<UserDto>(result.Value);
+    }
 
-        return mapper.Map<UserDto>(user);
+    public async Task<Result<string>> LoginJwtAsync(UserLoginDto dto)
+    {
+        var result = await ValidateUserAsync(dto);
+
+        if (!result.IsSuccess)
+            return Result<string>.Failure(result.Error!);
+
+        var user = result.Value;
+
+        var claims = new List<Claim>
+        {
+            new(ClaimTypes.NameIdentifier, user!.Id.ToString()),
+            new(ClaimTypes.Role, user.Role.ToString())
+        };
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET")!));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var token = new JwtSecurityToken(
+            claims: claims,
+            expires: DateTime.UtcNow.AddMinutes(30),
+            signingCredentials: creds
+        );
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
     public async Task<Result> RegisterAsync(UserRegisterDto dto)
@@ -45,5 +73,18 @@ public sealed class UserService(
         await unitOfWork.SaveChangesAsync();
 
         return Result.Success();
+    }
+
+    private async Task<Result<User>> ValidateUserAsync(UserLoginDto dto)
+    {
+        var user = await userRepository.GetByEmailAsync(dto.Email);
+
+        if (user == null)
+            return UserErrors.InvalidEmail;
+
+        if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+            return UserErrors.InvalidPassword;
+
+        return user;
     }
 }

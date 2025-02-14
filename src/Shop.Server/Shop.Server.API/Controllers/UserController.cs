@@ -8,13 +8,13 @@ namespace Shop.Server.API.Controllers;
 [Route("api/user")]
 public sealed class UserController(IUserService userService) : ApiController
 {
-    [HttpPost("register")]
-    public async Task<IResult> Register(UserRegisterDto dto)
+    [HttpPost("login")]
+    public async Task<IResult> LoginJwt(UserLoginDto dto)
     {
-        var result = await userService.RegisterAsync(dto);
+        var result = await userService.LoginJwtAsync(dto);
 
         return result.IsSuccess
-            ? Results.Ok()
+            ? Results.Ok(result.Value)
             : result.ToProblemDetails();
     }
 }

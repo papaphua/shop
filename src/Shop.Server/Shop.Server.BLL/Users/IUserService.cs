@@ -7,4 +7,5 @@ public interface IUserService
 {
     Task<Result> RegisterAsync(UserRegisterDto dto);
     Task<Result<UserDto>> LoginAsync(UserLoginDto dto);
+    Task<Result<string>> LoginJwtAsync(UserLoginDto dto);
 }

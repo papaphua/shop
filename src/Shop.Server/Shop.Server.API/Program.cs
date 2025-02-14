@@ -1,3 +1,4 @@
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using Shop.Server.BLL.CartItems;
 using Shop.Server.BLL.Products;
@@ -7,9 +8,8 @@ using Shop.Server.DAL.CartItems;
 using Shop.Server.DAL.Core;
 using Shop.Server.DAL.Products;
 using Shop.Server.DAL.Users;
-using Shop.Shared.CartItems;
-using Shop.Shared.Products;
-using Shop.Shared.Users;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;

@@ -13,4 +13,4 @@ public interface ICartItemService
     Task<Result> RemoveAsync(int userId, int cartItemId);
 
     Task<Result> SetQuantityAsync(int userId, int cartItemId, int quantity);
-};
+}
