@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Shop.Client.Customer.Components;
+using Shop.Client.Customer;
 using Shop.Server.BLL.CartItems;
 using Shop.Server.BLL.Products;
 using Shop.Server.BLL.Users;
@@ -9,9 +9,6 @@ using Shop.Server.DAL.CartItems;
 using Shop.Server.DAL.Core;
 using Shop.Server.DAL.Products;
 using Shop.Server.DAL.Users;
-using Shop.Shared.CartItems;
-using Shop.Shared.Products;
-using Shop.Shared.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +40,8 @@ builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICartItemService, CartItemService>();
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

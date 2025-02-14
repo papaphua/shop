@@ -5,19 +5,16 @@ using Microsoft.AspNetCore.Components;
 using Shop.Server.BLL.Users;
 using Shop.Shared.Users;
 
-namespace Shop.Client.Customer.Components.Pages;
+namespace Shop.Client.Customer.Pages;
 
-public partial class LoginPage : ComponentBase
+public sealed partial class LoginPage : ComponentBase
 {
+    [SupplyParameterFromForm] private UserLoginDto LoginDto { get; set; } = new();
     [CascadingParameter] public HttpContext? HttpContext { get; set; }
+    [Inject] public required IUserService UserService { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
-    [Inject] public IUserService UserService { get; set; }
-
-    [Inject] public NavigationManager NavigationManager { get; set; }
-
-    [SupplyParameterFromForm] private UserLoginDto LoginDto { get; set;  } = new();
-
-    private async Task LoginAsync()
+    private async Task HandleLoginAsync()
     {
         var result = await UserService.LoginAsync(LoginDto);
 

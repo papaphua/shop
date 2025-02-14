@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shop.Server.API.Core;
 using Shop.Server.BLL.Products;
 using Shop.Shared.Core.Pagination;
@@ -19,6 +20,7 @@ public sealed class ProductController(IProductService productService) : ApiContr
             : result.ToProblemDetails();
     }
 
+    [Authorize(Roles = "1")]
     [HttpPost]
     public async Task<IResult> Create(ProductDto dto)
     {
@@ -29,6 +31,7 @@ public sealed class ProductController(IProductService productService) : ApiContr
             : result.ToProblemDetails();
     }
 
+    [Authorize(Roles = "1")]
     [HttpDelete("{productId:int}")]
     public async Task<IResult> Remove(int productId)
     {
@@ -39,6 +42,7 @@ public sealed class ProductController(IProductService productService) : ApiContr
             : result.ToProblemDetails();
     }
 
+    [Authorize(Roles = "1")]
     [HttpPut("{productId:int}")]
     public async Task<IResult> Update(int productId, ProductDto dto)
     {

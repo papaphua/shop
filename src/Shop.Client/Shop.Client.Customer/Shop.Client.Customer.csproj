@@ -11,4 +11,25 @@
         <ProjectReference Include="..\Shop.Client.Common\Shop.Client.Common.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <AdditionalFiles Include="Layout\MainLayout.razor"/>
+        <AdditionalFiles Include="Layout\NavMenu.razor"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <_ContentIncludedByDefault Remove="Components\Comp\ProductForm.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Pages\AccessDeniedPage.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Pages\CreateProductPage.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Pages\EditProductPage.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Pages\Error.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Pages\Home.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Pages\LoginPage.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Pages\LogoutPage.razor"/>
+        <_ContentIncludedByDefault Remove="Components\Pages\ProductsPage.razor"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Layout\MainLayout.razor.cs"/>
+    </ItemGroup>
+
 </Project>
