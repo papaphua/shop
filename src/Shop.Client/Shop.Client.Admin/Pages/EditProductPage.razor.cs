@@ -23,12 +23,4 @@ public sealed partial class EditProductPage : ComponentBase
         await ProductService.UpdateAsync(ProductId, _product);
         NavigationManager.NavigateTo("/products");
     }
-    
-    private async Task HandleFileChangeAsync(InputFileChangeEventArgs e)
-    {
-        var file = e.File;
-        var buffer = new byte[file.Size];
-        await file.OpenReadStream().ReadAsync(buffer);
-        _product.ImageData = buffer;
-    }
 }

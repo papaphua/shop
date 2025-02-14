@@ -16,12 +16,4 @@ public sealed partial class CreateProductPage : ComponentBase
         await ProductService.CreateAsync(_product);
         NavigationManager.NavigateTo("/products");
     }
-
-    private async Task HandleFileChangeAsync(InputFileChangeEventArgs e)
-    {
-        var file = e.File;
-        var buffer = new byte[file.Size];
-        await file.OpenReadStream().ReadAsync(buffer);
-        _product.ImageData = buffer;
-    }
 }
