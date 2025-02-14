@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Server.API.Core;
+using Shop.Server.BLL.Products;
 using Shop.Shared.Core.Pagination;
 using Shop.Shared.Products;
 

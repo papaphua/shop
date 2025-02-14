@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop.Server.API.Core;
+using Shop.Server.BLL.Users;
 using Shop.Shared.Users;
 
 namespace Shop.Server.API.Controllers;

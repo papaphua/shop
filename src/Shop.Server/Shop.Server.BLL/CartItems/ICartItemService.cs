@@ -1,7 +1,8 @@
-﻿using Shop.Shared.Core.Pagination;
-using Shop.Shared.Core.Results;
+﻿using Shop.Server.BLL.Core.Results;
+using Shop.Shared.CartItems;
+using Shop.Shared.Core.Pagination;
 
-namespace Shop.Shared.CartItems;
+namespace Shop.Server.BLL.CartItems;
 
 public interface ICartItemService
 {

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
+using Shop.Server.BLL.Core.Results;
 using Shop.Server.BLL.Products;
 using Shop.Server.DAL.CartItems;
 using Shop.Server.DAL.Core;
 using Shop.Server.DAL.Products;
 using Shop.Shared.CartItems;
 using Shop.Shared.Core.Pagination;
-using Shop.Shared.Core.Results;
 
 namespace Shop.Server.BLL.CartItems;
 

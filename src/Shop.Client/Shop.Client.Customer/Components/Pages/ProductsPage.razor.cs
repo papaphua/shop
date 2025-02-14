@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Shop.Server.BLL.Products;
 using Shop.Shared.Core.Pagination;
 using Shop.Shared.Products;
 

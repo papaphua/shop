@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components;
+using Shop.Server.BLL.Users;
 using Shop.Shared.Users;
 
 namespace Shop.Client.Customer.Components.Pages;

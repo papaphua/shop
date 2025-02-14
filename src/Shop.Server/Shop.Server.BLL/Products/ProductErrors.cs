@@ -1,4 +1,4 @@
-﻿using Shop.Shared.Core.Results;
+﻿using Shop.Server.BLL.Core.Results;
 
 namespace Shop.Server.BLL.Products;
 

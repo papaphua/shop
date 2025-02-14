@@ -1,4 +1,4 @@
-﻿namespace Shop.Shared.Core.Results;
+﻿namespace Shop.Server.BLL.Core.Results;
 
 public class Result
 {

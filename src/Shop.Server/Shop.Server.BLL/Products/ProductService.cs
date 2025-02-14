@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using Shop.Server.BLL.Core.Results;
 using Shop.Server.DAL.Core;
 using Shop.Server.DAL.Products;
 using Shop.Shared.Core.Pagination;
-using Shop.Shared.Core.Results;
 using Shop.Shared.Products;
 
 namespace Shop.Server.BLL.Products;

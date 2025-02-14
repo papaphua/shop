@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using Shop.Server.BLL.Core.Results;
 using Shop.Server.DAL.Core;
 using Shop.Server.DAL.Users;
-using Shop.Shared.Core.Results;
 using Shop.Shared.Users;
 
 namespace Shop.Server.BLL.Users;
