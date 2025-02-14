@@ -1,1 +1,52 @@
 ﻿@page "/products"
+
+@if (_list.Items.Count < 1)
+{
+    <p class="text-center text-muted">Loading...</p>
+}
+else
+{
+    <div class="container mt-4">
+        <div class="row">
+            @foreach (var product in _list.Items)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title">@product.Name</h4>
+                            <p class="card-text">@product.Description</p>
+                            <p class="text-primary font-weight-bold">Price: @product.Price.ToString("C")</p>
+                            @if (product.ImageData.Length > 0)
+                            {
+                                <img class="img-fluid rounded"
+                                     src="@($"data:image/png;base64,{Convert.ToBase64String(product.ImageData)}")"
+                                     alt="@product.Name"/>
+                            }
+                            <div class="mt-3 d-flex justify-content-between">
+                                <button class="btn btn-warning"
+                                        @onclick='() => Nav.NavigateTo($"/edit-product/{product.Id}")'>Edit
+                                </button>
+                                <button class="btn btn-danger" @onclick="() => DeleteProduct(product.Id)">Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-4">
+        @if (_list.Metadata.HasPreviousPage)
+        {
+            <button class="btn btn-primary me-2" @onclick="() => LoadNewPage(_list.Metadata.PageNumber - 1)">Previous
+            </button>
+        }
+        <span class="align-self-center">Page @_list.Metadata.PageNumber of @_list.Metadata.TotalPages</span>
+        @if (_list.Metadata.HasNextPage)
+        {
+            <button class="btn btn-primary ms-2" @onclick="() => LoadNewPage(_list.Metadata.PageNumber + 1)">Next
+            </button>
+        }
+    </div>
+}

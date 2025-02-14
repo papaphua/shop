@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Shop.Server.API.Core;
 using Shop.Server.BLL.Products;
+using Shop.Server.DAL.Users;
 using Shop.Shared.Core.Pagination;
 using Shop.Shared.Products;
 
@@ -21,7 +22,7 @@ public sealed class ProductController(IProductService productService) : ApiContr
             : result.ToProblemDetails();
     }
     
-    [Authorize(Roles = "1")]
+    [Authorize(Roles = nameof(Role.Admin))]
     [HttpGet("{id:int}")]
     public async Task<IResult> GetById(int id)
     {
@@ -32,7 +33,7 @@ public sealed class ProductController(IProductService productService) : ApiContr
             : result.ToProblemDetails();
     }
 
-    [Authorize(Roles = "1")]
+    [Authorize(Roles = nameof(Role.Admin))]
     [HttpPost]
     public async Task<IResult> Create(ProductDto dto)
     {
@@ -43,7 +44,7 @@ public sealed class ProductController(IProductService productService) : ApiContr
             : result.ToProblemDetails();
     }
 
-    [Authorize(Roles = "1")]
+    [Authorize(Roles = nameof(Role.Admin))]
     [HttpDelete("{productId:int}")]
     public async Task<IResult> Remove(int productId)
     {
@@ -54,7 +55,7 @@ public sealed class ProductController(IProductService productService) : ApiContr
             : result.ToProblemDetails();
     }
 
-    [Authorize(Roles = "1")]
+    [Authorize(Roles = nameof(Role.Admin))]
     [HttpPut("{productId:int}")]
     public async Task<IResult> Update(int productId, ProductDto dto)
     {

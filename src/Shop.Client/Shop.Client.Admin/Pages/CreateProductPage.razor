@@ -1,1 +1,28 @@
 ﻿@page "/create-product"
+
+<EditForm Model="@_product" OnValidSubmit="HandleSaveChangesAsync">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <InputText id="name" class="form-control" @bind-Value="_product.Name"/>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <InputTextArea id="description" class="form-control" @bind-Value="_product.Description"/>
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price</label>
+        <InputNumber id="price" class="form-control" @bind-Value="_product.Price"/>
+    </div>
+
+    <div class="form-group">
+        <label for="image">Image</label>
+        <InputFile id="image" class="form-control" OnChange="HandleFileChangeAsync"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</EditForm>
