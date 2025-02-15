@@ -32,12 +32,15 @@ public sealed class UserService(
 
         if (!result.IsSuccess)
             return Result<string>.Failure(result.Error!);
+        
+        var user = result.Value!;
 
-        var user = result.Value;
-
+        if(user.Role != Role.Admin)
+            return UserErrors.NoPermission;
+        
         var claims = new List<Claim>
         {
-            new(ClaimTypes.NameIdentifier, user!.Id.ToString()),
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Role, user.Role.ToString())
         };
 

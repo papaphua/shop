@@ -15,4 +15,7 @@ public static class UserErrors
 
     public static readonly Error InvalidPassword = Error.Validation(
         "User.Password", "Password is invalid.");
+    
+    public static readonly Error NoPermission = Error.Validation(
+        "User.NoPermission", "You don`t have permission to access this resource.");
 }
