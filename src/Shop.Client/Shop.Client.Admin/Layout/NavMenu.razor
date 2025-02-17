@@ -8,21 +8,37 @@
 </div>
 
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
+    <nav style="display: flex; flex-direction: column; justify-content: space-between; height: 100%">
+        <div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="products">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Products
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="create-product">
+                    <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Create new
+                </NavLink>
+            </div>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="products">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Products
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="create-product">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Create new
-            </NavLink>
+        <div class="align-self-center">
+            <AuthorizeView>
+                <Authorized>
+                    <NavLink href="logout">
+                        <button class="button button-normal">Logout</button>
+                    </NavLink>
+                </Authorized>
+                <NotAuthorized>
+                    <NavLink href="login">
+                        <button class="button button-normal">Login</button>
+                    </NavLink>
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
     </nav>
 </div>
