@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using Shop.Shared.Products;
@@ -11,8 +12,10 @@ public partial class ProductForm : ComponentBase
     [Parameter] public EventCallback<ProductDto> OnProductSaved { get; set; }
     [Inject] public required IJSRuntime JS { get; set; }
 
-    DotNetObjectReference<ProductForm> Reference { get; set; }
-    
+    public required DotNetObjectReference<ProductForm> Reference { get; set; }
+
+    private string? Url { get; set; }
+
     private async Task HandleSubmit()
     {
         await OnProductSaved.InvokeAsync(Product);
@@ -21,23 +24,19 @@ public partial class ProductForm : ComponentBase
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        
+
         if (firstRender)
         {
             Reference = DotNetObjectReference.Create(this);
-            await JS.InvokeVoidAsync("ImagePicker.registerReference", Reference);
+            await JS.InvokeVoidAsync("ImagePicker.registerReferenceAsync", Reference);
         }
     }
 
     private async Task InvokeLoadImageAsync()
     {
-        await JS.InvokeVoidAsync("ImagePicker.loadImage", Reference);
-    }    
-    
-    [JSInvokable("HandleFileChange")]
-    public async Task HandleFileChangeAsync(byte[] imageData)
-    {
-        Product.ImageData = imageData;
-        StateHasChanged();
+        var result = await JS.InvokeAsync<ImageModel>("ImagePicker.loadImageAsync", Reference);
+        
+        Url = result.ImgUrl;
+        Product.ImageData = result.ImgBytes;
     }
 }
