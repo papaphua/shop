@@ -8,10 +8,14 @@
         <div class="top-row px-4">
             <AuthorizeView>
                 <Authorized>
-                    <NavLink class="btn btn-danger" href="logout">Logout</NavLink>
+                    <NavLink href="logout">
+                        <button class="button button-normal">Logout</button>
+                    </NavLink>
                 </Authorized>
                 <NotAuthorized>
-                    <NavLink class="btn btn-primary" href="login">Login</NavLink>
+                    <NavLink href="login">
+                        <button class="button button-normal">Login</button>
+                    </NavLink>
                 </NotAuthorized>
             </AuthorizeView>
         </div>
