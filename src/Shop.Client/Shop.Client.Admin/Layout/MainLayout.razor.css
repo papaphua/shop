@@ -1,83 +1,18 @@
 .page {
     background-color: rgb(170, 140, 205);
-    padding-left: 10px;
-    padding-right: 10px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    border-radius: 15px;
-    padding-left: 10px;
-    flex: 1;
+    padding: 10px;
 }
 
 .sidebar {
-    border-radius: 15px;
     background-color: rgb(98, 78, 136);
-}
-
-.top-row {
     border-radius: 15px;
-    background-color: rgb(59, 47, 82);
-    justify-content: flex-end;
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
+    width: 20%;
+    position: sticky;
+    height: calc(100vh - 20px);
 }
 
-.top-row ::deep a, .top-row ::deep .btn-link {
-    white-space: nowrap;
-    margin-left: 1.5rem;
-    text-decoration: none;
-}
-
-.top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
-    text-decoration: underline;
-}
-
-.top-row ::deep a:first-child {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-@media (max-width: 640.98px) {
-    .top-row {
-        justify-content: space-between;
-    }
-
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        margin-left: 0;
-    }
-}
-
-@media (min-width: 641px) {
-    .page {
-        flex-direction: row;
-    }
-
-    .sidebar {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
-
-    .top-row {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
-
-    .top-row.auth ::deep a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
-
-    .top-row, article {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
-    }
+.content-data {
+    border-radius: 15px;
+    padding-left: 10px;
+    width: 80%;
 }
