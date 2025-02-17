@@ -25,7 +25,8 @@
             <div class="form-group w-25 h-25">
                 <img class="img-fluid rounded"
                      src="@Url"
-                     alt="@Product.Name"/>
+                     alt="@Product.Name"
+                     @onload="OnImageLoaded"/>
             </div>
         }
         else if (Product is { ImageData.Length: > 0 })
@@ -36,6 +37,9 @@
         }
     </div>
 
+    <ProductModal @bind-IsOpen="IsModalOpen" Message="Image loaded successfully!"/>
+
+    <h1>IsModalOpen = @IsModalOpen</h1>
 
     <button type="submit" class="btn btn-primary">Save</button>
 </EditForm>

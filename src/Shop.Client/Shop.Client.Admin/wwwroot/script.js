@@ -6,8 +6,12 @@ ImagePicker.registerReferenceAsync = async function (dotNetObject) {
 
 ImagePicker.loadImageAsync = async function () {
     const [filePicker] = await window.showOpenFilePicker();
-
     const file = await filePicker.getFile();
+
+    if (!file) {
+        return null;
+    }
+
     const buffer = await file.arrayBuffer();
     const bytes = new Uint8Array(buffer);
 

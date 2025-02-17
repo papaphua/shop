@@ -1,0 +1,19 @@
+﻿@if (IsOpen)
+{
+    <div class="modal-backdrop show"></div>
+    <div class="modal show d-block glossy-bg">
+        <div class="modal-dialog">
+            <div class="modal-content glossy-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Information</h5>
+                </div>
+                <div class="modal-body">
+                    <p>@Message</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="CloseModal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

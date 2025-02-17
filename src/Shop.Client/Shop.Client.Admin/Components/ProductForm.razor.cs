@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Shop.Shared.Products;
 
@@ -11,6 +9,7 @@ public partial class ProductForm : ComponentBase
     [Parameter] public ProductDto Product { get; set; } = new();
     [Parameter] public EventCallback<ProductDto> OnProductSaved { get; set; }
     [Inject] public required IJSRuntime JS { get; set; }
+    private bool IsModalOpen { get; set; }
 
     public required DotNetObjectReference<ProductForm> Reference { get; set; }
 
@@ -35,8 +34,13 @@ public partial class ProductForm : ComponentBase
     private async Task InvokeLoadImageAsync()
     {
         var result = await JS.InvokeAsync<ImageModel>("ImagePicker.loadImageAsync", Reference);
-        
+
         Url = result.ImgUrl;
         Product.ImageData = result.ImgBytes;
+    }
+
+    private void OnImageLoaded()
+    {
+        IsModalOpen = true;
     }
 }
