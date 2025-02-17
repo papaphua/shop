@@ -18,19 +18,24 @@ public partial class ProductForm : ComponentBase
         await OnProductSaved.InvokeAsync(Product);
     }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
+        await base.OnAfterRenderAsync(firstRender);
         
         if (firstRender)
         {
             Reference = DotNetObjectReference.Create(this);
-            JS.InvokeVoidAsync("ImagePicker.registerReference", Reference);
+            await JS.InvokeVoidAsync("ImagePicker.registerReference", Reference);
         }
     }
+
+    private async Task InvokeLoadImageAsync()
+    {
+        await JS.InvokeVoidAsync("ImagePicker.loadImage", Reference);
+    }    
     
     [JSInvokable("HandleFileChange")]
-    public void HandleFileChange(byte[] imageData)
+    public async Task HandleFileChangeAsync(byte[] imageData)
     {
         Product.ImageData = imageData;
         StateHasChanged();

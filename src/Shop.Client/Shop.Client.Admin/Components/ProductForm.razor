@@ -17,7 +17,7 @@
         <InputNumber id="price" class="form-control" @bind-Value="Product.Price"/>
     </div>
 
-    <button type="button" class="btn btn-primary" onclick="ImagePicker.loadImage()">Load image</button>
+    <button type="button" class="btn btn-primary" @onclick="InvokeLoadImageAsync">Load image</button>
 
     @if (Product is { ImageData.Length: > 0 })
     {
