@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.JSInterop;
 using Shop.Shared.Products;
 
 namespace Shop.Client.Admin.Components;
@@ -8,18 +9,30 @@ public partial class ProductForm : ComponentBase
 {
     [Parameter] public ProductDto Product { get; set; } = new();
     [Parameter] public EventCallback<ProductDto> OnProductSaved { get; set; }
+    [Inject] public required IJSRuntime JS { get; set; }
 
+    DotNetObjectReference<ProductForm> Reference { get; set; }
+    
     private async Task HandleSubmit()
     {
         await OnProductSaved.InvokeAsync(Product);
     }
 
-    private async Task HandleFileChange(InputFileChangeEventArgs e)
+    protected override void OnAfterRender(bool firstRender)
     {
-        var file = e.File;
-        var buffer = new byte[file.Size];
-        await file.OpenReadStream().ReadAsync(buffer);
-        Product.ImageData = buffer;
+        base.OnAfterRender(firstRender);
+        
+        if (firstRender)
+        {
+            Reference = DotNetObjectReference.Create(this);
+            JS.InvokeVoidAsync("ImagePicker.registerReference", Reference);
+        }
+    }
+    
+    [JSInvokable("HandleFileChange")]
+    public void HandleFileChange(byte[] imageData)
+    {
+        Product.ImageData = imageData;
         StateHasChanged();
     }
 }

@@ -17,4 +17,8 @@
         <ProjectReference Include="..\Shop.Client.Common\Shop.Client.Common.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\scripts\" />
+    </ItemGroup>
+
 </Project>
