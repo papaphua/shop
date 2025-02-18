@@ -8,6 +8,7 @@ using Shop.Server.DAL;
 using Shop.Server.DAL.CartItems;
 using Shop.Server.DAL.Core;
 using Shop.Server.DAL.Products;
+using Shop.Server.DAL.ProductTypes;
 using Shop.Server.DAL.Users;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,7 @@ builder.Services.AddAutoMapper(options =>
     options.AddMaps(typeof(UserMaps).Assembly));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
 

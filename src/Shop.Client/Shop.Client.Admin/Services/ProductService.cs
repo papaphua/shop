@@ -2,6 +2,7 @@
 using Shop.Client.Admin.Services.Interfaces;
 using Shop.Shared.Core.Pagination;
 using Shop.Shared.Products;
+using Shop.Shared.ProductTypes;
 
 namespace Shop.Client.Admin.Services;
 
@@ -34,5 +35,10 @@ public sealed class ProductService(HttpClient http) : IProductService
     public async Task UpdateAsync(int id, ProductDto dto)
     {
         await http.PutAsJsonAsync($"api/product/{id}", dto);
+    }
+    
+    public async Task<List<ProductTypeDto>> GetProductTypesAsync()
+    {
+        return (await http.GetFromJsonAsync<List<ProductTypeDto>>("api/product/types"))!;
     }
 }

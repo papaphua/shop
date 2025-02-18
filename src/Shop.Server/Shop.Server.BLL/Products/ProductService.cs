@@ -2,13 +2,16 @@
 using Shop.Server.BLL.Core.Results;
 using Shop.Server.DAL.Core;
 using Shop.Server.DAL.Products;
+using Shop.Server.DAL.ProductTypes;
 using Shop.Shared.Core.Pagination;
 using Shop.Shared.Products;
+using Shop.Shared.ProductTypes;
 
 namespace Shop.Server.BLL.Products;
 
 public sealed class ProductService(
     IProductRepository productRepository,
+    IProductTypeRepository productTypeRepository,
     IUnitOfWork unitOfWork,
     IMapper mapper)
     : IProductService
@@ -60,5 +63,12 @@ public sealed class ProductService(
         await unitOfWork.SaveChangesAsync();
 
         return Result.Success();
+    }
+
+    public async Task<Result<List<ProductTypeDto>>> GetProductTypesAsync()
+    {
+        var types = await productTypeRepository.GetAllAsync();
+        return types.Select(mapper.Map<ProductTypeDto>)
+            .ToList();
     }
 }

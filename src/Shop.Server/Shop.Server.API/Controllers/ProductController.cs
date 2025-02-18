@@ -22,6 +22,17 @@ public sealed class ProductController(IProductService productService) : ApiContr
             : result.ToProblemDetails();
     }
     
+    [Authorize]
+    [HttpGet("types")]
+    public async Task<IResult> GetProductTypes()
+    {
+        var result = await productService.GetProductTypesAsync();
+
+        return result.IsSuccess
+            ? Results.Ok(result.Value)
+            : result.ToProblemDetails();
+    }
+    
     [Authorize(Roles = nameof(Role.Admin))]
     [HttpGet("{id:int}")]
     public async Task<IResult> GetById(int id)
