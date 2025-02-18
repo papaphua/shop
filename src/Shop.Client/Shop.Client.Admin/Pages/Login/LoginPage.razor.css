@@ -6,12 +6,12 @@
     height: 80vh;
 }
 
-.bg {
+.background {
     border-radius: 15px;
     background-color: rgb(98, 78, 136);
 }
 
-.form-comp {
+.form-content {
     height: 200px;
     width: 500px;
     padding: 20px;
@@ -43,7 +43,7 @@
     margin: 5px;
 }
 
-.body {
+.fields {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,7 +51,7 @@
     width: 100%;
 }
 
-.body label {
+.fields label {
     color: white;
     margin-bottom: 5px;
 }

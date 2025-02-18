@@ -8,10 +8,10 @@
     font-size: 2rem;
 }
 
-.auth-succ {
+.auth-success {
     text-decoration: underline darkgreen;
 }
 
-.auth-dang {
+.auth-danger {
     text-decoration: underline darkred;
 }

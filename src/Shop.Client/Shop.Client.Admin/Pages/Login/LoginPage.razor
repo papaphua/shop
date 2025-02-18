@@ -1,14 +1,14 @@
 ﻿@page "/login"
 
 <div class="form">
-    <div class="bg">
+    <div class="background">
         <EditForm Model="@LoginDto" OnValidSubmit="HandleLoginAsync">
             <DataAnnotationsValidator/>
-            <div class="form-comp">
+            <div class="form-content">
                 <div class="title">
                     Login
                 </div>
-                <div class="body">
+                <div class="fields">
                     <div class="input-group">
                         <label for="email">Email</label>
                         <InputText id="email" @bind-Value="LoginDto.Email"/>

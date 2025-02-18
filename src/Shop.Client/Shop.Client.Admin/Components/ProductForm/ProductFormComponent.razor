@@ -1,12 +1,12 @@
 ﻿<div class="form">
-    <div class="bg">
+    <div class="background">
         <EditForm Model="@Product" OnValidSubmit="HandleSubmit">
             <DataAnnotationsValidator/>
-            <div class="form-comp">
+            <div class="form-content">
                 <div class="title">
                     Edit
                 </div>
-                <div class="body">
+                <div class="fields">
                     <div class="input-group">
                         <label for="name">Name</label>
                         <InputText id="name" @bind-Value="Product.Name"/>
@@ -38,8 +38,8 @@
                     }
                 </div>
                 <div class="btn-holder">
-                    <button type="button" class="btn btn-norm" @onclick="InvokeLoadImageAsync">Load Image</button>
-                    <button class="btn btn-succ" type="submit">Save</button>
+                    <button type="button" class="btn btn-normal" @onclick="InvokeLoadImageAsync">Load Image</button>
+                    <button class="btn btn-success" type="submit">Save</button>
                 </div>
             </div>
         </EditForm>
