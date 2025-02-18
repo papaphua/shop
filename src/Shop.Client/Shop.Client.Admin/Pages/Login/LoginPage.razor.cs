@@ -11,6 +11,7 @@ public sealed partial class LoginPage : ComponentBase
     [Inject] public required IUserService UserService { get; set; }
     [Inject] public required NavigationManager NavigationManager { get; set; }
     [Inject] public required AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+    
     private UserLoginDto LoginDto { get; } = new();
 
     private async Task HandleLoginAsync()

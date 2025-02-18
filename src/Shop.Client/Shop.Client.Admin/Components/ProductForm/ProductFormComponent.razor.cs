@@ -7,15 +7,15 @@ namespace Shop.Client.Admin.Components.ProductForm;
 
 public partial class ProductFormComponent : ComponentBase
 {
+    [Inject] public required IJSRuntime JsRuntime { get; set; }
+
     [Parameter] public ProductDto Product { get; set; } = new();
     [Parameter] public EventCallback<ProductDto> OnProductSaved { get; set; }
-    [Inject] public required IJSRuntime JS { get; set; }
-    private bool IsModalOpen { get; set; }
 
-    public required DotNetObjectReference<ProductFormComponent> Reference { get; set; }
-
-    private string? Url { get; set; }
-
+    private bool _isModalOpen;
+    private DotNetObjectReference<ProductFormComponent>? _reference;
+    private string? _url;
+    
     private async Task HandleSubmit()
     {
         await OnProductSaved.InvokeAsync(Product);
@@ -27,21 +27,21 @@ public partial class ProductFormComponent : ComponentBase
 
         if (firstRender)
         {
-            Reference = DotNetObjectReference.Create(this);
-            await JS.InvokeVoidAsync("ImagePicker.registerReferenceAsync", Reference);
+            _reference = DotNetObjectReference.Create(this);
+            await JsRuntime.InvokeVoidAsync("ImagePicker.registerReferenceAsync", _reference);
         }
     }
 
     private async Task InvokeLoadImageAsync()
     {
-        var result = await JS.InvokeAsync<ImageModel>("ImagePicker.loadImageAsync", Reference);
+        var result = await JsRuntime.InvokeAsync<ImageModel>("ImagePicker.loadImageAsync", _reference);
 
-        Url = result.ImgUrl;
+        _url = result.ImgUrl;
         Product.ImageData = result.ImgBytes;
     }
 
     private void OnImageLoaded()
     {
-        IsModalOpen = true;
+        _isModalOpen = true;
     }
 }

@@ -23,10 +23,10 @@
                         <ValidationMessage For="() => Product.Price"/>
                     </div>
 
-                    @if (Url != null)
+                    @if (_url != null)
                     {
                         <div>
-                            <img src="@Url" alt="@Product.Name" @onload="OnImageLoaded"/>
+                            <img src="@_url" alt="@Product.Name" @onload="OnImageLoaded"/>
                         </div>
                     }
                     else if (Product is { ImageData.Length: > 0 })
@@ -46,4 +46,4 @@
     </div>
 </div>
 
-<ProductModalComponent @bind-IsOpen="IsModalOpen" Message="Image loaded successfully!"/>
+<ProductModalComponent @bind-IsOpen="_isModalOpen" Message="Image loaded successfully!"/>

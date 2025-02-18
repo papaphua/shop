@@ -29,7 +29,7 @@ else
                             <div class="product-actions">
                                 <button class="delete-button" @onclick="() => DeleteProduct(product.Id)">Delete</button>
                                 <button class="edit-button"
-                                        @onclick='() => Nav.NavigateTo($"/edit-product/{product.Id}")'>Edit
+                                        @onclick='() => NavigationManager.NavigateTo($"/edit-product/{product.Id}")'>Edit
                                 </button>
                             </div>
                         </div>

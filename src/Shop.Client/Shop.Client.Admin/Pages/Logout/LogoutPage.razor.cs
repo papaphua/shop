@@ -7,7 +7,7 @@ namespace Shop.Client.Admin.Pages.Logout;
 public sealed partial class LogoutPage : ComponentBase
 {
     [Inject] public required AuthenticationStateProvider AuthenticationStateProvider { get; set; }
-    [Inject] public NavigationManager NavigationManager { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

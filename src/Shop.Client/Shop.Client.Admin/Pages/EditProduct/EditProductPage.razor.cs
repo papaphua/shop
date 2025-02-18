@@ -6,11 +6,13 @@ namespace Shop.Client.Admin.Pages.EditProduct;
 
 public sealed partial class EditProductPage : ComponentBase
 {
-    private ProductDto _product = new();
-    [Parameter] public int ProductId { get; set; }
-    [Inject] private IProductService ProductService { get; set; }
-    [Inject] private NavigationManager NavigationManager { get; set; }
+    [Inject] public required IProductService ProductService { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
 
+    [Parameter] public int ProductId { get; set; }
+ 
+    private ProductDto _product = new();
+    
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
