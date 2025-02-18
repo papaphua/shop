@@ -1,7 +1,7 @@
 ﻿using Shop.Shared.Core.Pagination;
 using Shop.Shared.Products;
 
-namespace Shop.Client.Admin.Services.ProductServices;
+namespace Shop.Client.Admin.Services.Interfaces;
 
 public interface IProductService
 {

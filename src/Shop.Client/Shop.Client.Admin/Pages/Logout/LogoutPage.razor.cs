@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Shop.Client.Admin.Auth;
 
-namespace Shop.Client.Admin.Pages;
+namespace Shop.Client.Admin.Pages.Logout;
 
 public sealed partial class LogoutPage : ComponentBase
 {

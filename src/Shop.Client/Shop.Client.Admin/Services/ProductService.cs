@@ -1,8 +1,9 @@
 ﻿using System.Net.Http.Json;
+using Shop.Client.Admin.Services.Interfaces;
 using Shop.Shared.Core.Pagination;
 using Shop.Shared.Products;
 
-namespace Shop.Client.Admin.Services.ProductServices;
+namespace Shop.Client.Admin.Services;
 
 public sealed class ProductService(HttpClient http) : IProductService
 {

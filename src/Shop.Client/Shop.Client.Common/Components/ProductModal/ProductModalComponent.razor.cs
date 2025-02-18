@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Shop.Client.Common;
+namespace Shop.Client.Common.Components.ProductModal;
 
-public partial class ProductModal : ComponentBase
+public partial class ProductModalComponent : ComponentBase
 {
     [Parameter] public bool IsOpen { get; set; }
     [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }

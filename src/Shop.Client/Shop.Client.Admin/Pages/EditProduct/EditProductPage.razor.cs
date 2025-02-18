@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Shop.Client.Admin.Services.ProductServices;
+using Shop.Client.Admin.Services.Interfaces;
 using Shop.Shared.Products;
 
-namespace Shop.Client.Admin.Pages;
+namespace Shop.Client.Admin.Pages.EditProduct;
 
 public sealed partial class EditProductPage : ComponentBase
 {

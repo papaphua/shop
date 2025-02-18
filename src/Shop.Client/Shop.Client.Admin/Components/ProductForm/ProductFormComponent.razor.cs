@@ -1,17 +1,18 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Shop.Client.Admin.Models;
 using Shop.Shared.Products;
 
-namespace Shop.Client.Admin.Components;
+namespace Shop.Client.Admin.Components.ProductForm;
 
-public partial class ProductForm : ComponentBase
+public partial class ProductFormComponent : ComponentBase
 {
     [Parameter] public ProductDto Product { get; set; } = new();
     [Parameter] public EventCallback<ProductDto> OnProductSaved { get; set; }
     [Inject] public required IJSRuntime JS { get; set; }
     private bool IsModalOpen { get; set; }
 
-    public required DotNetObjectReference<ProductForm> Reference { get; set; }
+    public required DotNetObjectReference<ProductFormComponent> Reference { get; set; }
 
     private string? Url { get; set; }
 

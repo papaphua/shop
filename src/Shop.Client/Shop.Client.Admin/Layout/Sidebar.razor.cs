@@ -4,9 +4,8 @@ namespace Shop.Client.Admin.Layout;
 
 public partial class Sidebar
 {
-    [Inject] public required NavigationManager NavManager { get; set; }
-
     private string _currentUri;
+    [Inject] public required NavigationManager NavManager { get; set; }
 
     protected override void OnInitialized()
     {
