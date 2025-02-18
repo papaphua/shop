@@ -1,7 +1,8 @@
 ﻿using System.Net.Http.Json;
+using Shop.Client.Admin.Services.Interfaces;
 using Shop.Shared.Users;
 
-namespace Shop.Client.Admin.Services.UserServices;
+namespace Shop.Client.Admin.Services;
 
 public sealed class UserService(HttpClient http) : IUserService
 {

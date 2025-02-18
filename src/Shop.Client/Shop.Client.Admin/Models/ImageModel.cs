@@ -1,4 +1,4 @@
-﻿namespace Shop.Client.Admin.Components;
+﻿namespace Shop.Client.Admin.Models;
 
 public sealed class ImageModel
 {

@@ -1,6 +1,6 @@
 ﻿using Shop.Shared.Users;
 
-namespace Shop.Client.Admin.Services.UserServices;
+namespace Shop.Client.Admin.Services.Interfaces;
 
 public interface IUserService
 {

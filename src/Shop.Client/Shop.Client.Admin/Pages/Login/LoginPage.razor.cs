@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Shop.Client.Admin.Auth;
-using Shop.Client.Admin.Services.UserServices;
+using Shop.Client.Admin.Services.Interfaces;
 using Shop.Shared.Users;
 
-namespace Shop.Client.Admin.Pages;
+namespace Shop.Client.Admin.Pages.Login;
 
 public sealed partial class LoginPage : ComponentBase
 {

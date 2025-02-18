@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Shop.Client.Admin;
 using Shop.Client.Admin.Auth;
-using Shop.Client.Admin.Services.ProductServices;
-using Shop.Client.Admin.Services.UserServices;
+using Shop.Client.Admin.Services;
+using Shop.Client.Admin.Services.Interfaces;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
