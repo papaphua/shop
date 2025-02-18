@@ -1,25 +1,36 @@
 ﻿@page "/login"
 
-<div class="d-flex justify-content-center align-items-center" style="min-height: 75vh;">
-    <EditForm Model="@LoginDto" OnValidSubmit="HandleLoginAsync" class="w-100" style="max-width: 400px;">
-        <DataAnnotationsValidator/>
+<div class="form">
+    <div class="bg">
+        <EditForm Model="@LoginDto" OnValidSubmit="HandleLoginAsync">
+            <DataAnnotationsValidator/>
+            <div class="form-comp">
+                <div class="title">
+                    Login
+                </div>
+                <div class="body">
+                    <table>
+                        <tr>
+                            <td><label for="email">Email</label></td>
+                            <td>
+                                <InputText id="email" @bind-Value="LoginDto.Email"/>
+                                <ValidationMessage class="validation-message" For="() => LoginDto.Email"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password</label></td>
+                            <td>
+                                <InputText id="password" type="password" @bind-Value="LoginDto.Password"/>
+                                <ValidationMessage class="validation-message" For="() => LoginDto.Password"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-        <h5 class="text-center mb-4">Login</h5>
-
-        <div class="form-group">
-            <label for="email">Email</label>
-            <InputText id="email" class="form-control" @bind-Value="LoginDto.Email"/>
-            <ValidationMessage For="() => LoginDto.Email"/>
-        </div>
-
-        <div class="form-group">
-            <label for="password">Password</label>
-            <InputText id="password" type="password" class="form-control" @bind-Value="LoginDto.Password"/>
-            <ValidationMessage For="() => LoginDto.Password"/>
-        </div>
-
-        <div class="form-group mt-3">
-            <button type="submit" class="btn btn-primary w-100">Login</button>
-        </div>
-    </EditForm>
+                <div class="btn-holder">
+                    <button class="btn" type="submit">Login</button>
+                </div>
+            </div>
+        </EditForm>
+    </div>
 </div>
