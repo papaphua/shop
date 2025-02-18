@@ -2,13 +2,17 @@
 
 <PageTitle>Home</PageTitle>
 
-<div class="text-decoration-underline">
+<div class="auth-status">
     <AuthorizeView>
         <Authorized>
-            You are authorized and can manage products.
+            <span class="auth-succ">
+                You are authorized and can manage products.
+            </span>
         </Authorized>
         <NotAuthorized>
-            You are not authorized. Proceed to login page.
+            <span class="auth-dang">
+                You are not authorized. Proceed to login page.
+            </span>
         </NotAuthorized>
     </AuthorizeView>
 </div>

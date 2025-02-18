@@ -1,0 +1,17 @@
+﻿.auth-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 80vh;
+    font-size: 2rem;
+}
+
+.auth-succ {
+    text-decoration: underline darkgreen;
+}
+
+.auth-dang {
+    text-decoration: underline darkred;
+}
