@@ -6,22 +6,25 @@
 <div class="nav-link-list">
     <div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick='() => NavigateToPage("")'>
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="products">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Products
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"
+                      @onclick='() => NavigateToPage("/products")'></span> Products
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="create-product">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Create new
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"
+                      @onclick='() => NavigateToPage("/create-product")'></span> Create new
             </NavLink>
         </div>
     </div>
     <div class="align-self-center">
+        <h4>@_currentUri</h4>
         <AuthorizeView>
             <Authorized>
                 <NavLink href="logout">
@@ -29,9 +32,10 @@
                 </NavLink>
             </Authorized>
             <NotAuthorized>
-                <NavLink href="login">
-                    <button class="button button-normal">Login</button>
-                </NavLink>
+                @if (!IsOnLoginPage())
+                {
+                    <button class="button button-normal" @onclick='() => NavigateToPage("/login")'>Login</button>
+                }
             </NotAuthorized>
         </AuthorizeView>
     </div>

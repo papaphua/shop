@@ -8,9 +8,9 @@ namespace Shop.Client.Admin.Pages;
 
 public sealed partial class LoginPage : ComponentBase
 {
-    [Inject] public IUserService UserService { get; set; }
-    [Inject] public NavigationManager NavigationManager { get; set; }
-    [Inject] public AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+    [Inject] public required IUserService UserService { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
+    [Inject] public required AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     private UserLoginDto LoginDto { get; } = new();
 
     private async Task HandleLoginAsync()
