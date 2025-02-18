@@ -4,30 +4,30 @@ namespace Shop.Client.Admin.Layout;
 
 public partial class Sidebar
 {
-    private string _currentUri;
-    [Inject] public required NavigationManager NavManager { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
+
+    private string? _currentUri;
 
     protected override void OnInitialized()
     {
-        _currentUri = NavManager.Uri;
+        _currentUri = NavigationManager.Uri;
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        if (NavManager.Uri != _currentUri)
-        {
-            _currentUri = NavManager.Uri;
-            StateHasChanged();
-        }
+        if (NavigationManager.Uri == _currentUri) return;
+
+        _currentUri = NavigationManager.Uri;
+        StateHasChanged();
     }
 
     private void NavigateToPage(string page)
     {
-        NavManager.NavigateTo(page);
+        NavigationManager.NavigateTo(page);
     }
 
     private bool IsOnLoginPage()
     {
-        return NavManager.Uri.EndsWith("/login");
+        return NavigationManager.Uri.EndsWith("/login");
     }
 }
