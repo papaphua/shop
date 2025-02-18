@@ -16,7 +16,7 @@ namespace Shop.Server.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.13")
+                .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -47,6 +47,23 @@ namespace Shop.Server.DAL.Migrations
                     b.ToTable("CartItem");
                 });
 
+            modelBuilder.Entity("Shop.Server.DAL.ProductTypes.ProductType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductType");
+                });
+
             modelBuilder.Entity("Shop.Server.DAL.Products.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -70,7 +87,12 @@ namespace Shop.Server.DAL.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductTypeId");
 
                     b.ToTable("Product");
                 });
@@ -116,6 +138,22 @@ namespace Shop.Server.DAL.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Shop.Server.DAL.Products.Product", b =>
+                {
+                    b.HasOne("Shop.Server.DAL.ProductTypes.ProductType", "ProductType")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductType");
+                });
+
+            modelBuilder.Entity("Shop.Server.DAL.ProductTypes.ProductType", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Shop.Server.DAL.Products.Product", b =>
