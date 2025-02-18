@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using Shop.Client.Admin.Services.ProductServices;
 using Shop.Shared.Products;
 
@@ -7,8 +6,8 @@ namespace Shop.Client.Admin.Pages;
 
 public sealed partial class EditProductPage : ComponentBase
 {
-    [Parameter] public int ProductId { get; set; }
     private ProductDto _product = new();
+    [Parameter] public int ProductId { get; set; }
     [Inject] private IProductService ProductService { get; set; }
     [Inject] private NavigationManager NavigationManager { get; set; }
 

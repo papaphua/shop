@@ -1,6 +1,5 @@
 .page {
     background-color: rgb(170, 140, 205);
-    padding: 10px;
 }
 
 .sidebar {
@@ -8,7 +7,7 @@
     border-radius: 15px;
     width: 20%;
     position: sticky;
-    height: calc(100vh - 20px);
+    height: calc(100vh);
 }
 
 .content-data {

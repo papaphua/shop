@@ -11,7 +11,7 @@ public sealed class UserService(HttpClient http) : IUserService
 
         if (!result.IsSuccessStatusCode)
             throw new Exception("No token received");
-        
+
         return await result.Content.ReadAsStringAsync();
     }
 }

@@ -11,7 +11,7 @@ public sealed partial class LoginPage : ComponentBase
     [Inject] public IUserService UserService { get; set; }
     [Inject] public NavigationManager NavigationManager { get; set; }
     [Inject] public AuthenticationStateProvider AuthenticationStateProvider { get; set; }
-    private UserLoginDto LoginDto { get; set; } = new();
+    private UserLoginDto LoginDto { get; } = new();
 
     private async Task HandleLoginAsync()
     {
@@ -20,7 +20,7 @@ public sealed partial class LoginPage : ComponentBase
         if (string.IsNullOrWhiteSpace(token)) return;
 
         await (AuthenticationStateProvider as JwtAuthStateProvider)!.NotifyAuthenticated(token);
-        
+
         NavigationManager.NavigateTo("/");
     }
 }
