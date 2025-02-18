@@ -49,11 +49,14 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-top: 5px;
 }
 
 .fields label {
     color: white;
     margin-bottom: 5px;
+    width: 120px;
+    text-align: left;
 }
 
 label {
@@ -63,14 +66,9 @@ label {
 
 .input-group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     margin-bottom: 10px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
