@@ -28,13 +28,12 @@ public partial class ProductFormComponent : ComponentBase
         if (firstRender)
         {
             _reference = DotNetObjectReference.Create(this);
-            await JsRuntime.InvokeVoidAsync("ImagePicker.registerReferenceAsync", _reference);
         }
     }
 
     private async Task InvokeLoadImageAsync()
     {
-        var result = await JsRuntime.InvokeAsync<ImageModel>("ImagePicker.loadImageAsync", _reference);
+        var result = await JsRuntime.InvokeAsync<ImageModel>("loadImageAsync", _reference);
 
         _url = result.ImgUrl;
         Product.ImageData = result.ImgBytes;

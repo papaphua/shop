@@ -1,10 +1,4 @@
-﻿var ImagePicker = ImagePicker || {};
-
-ImagePicker.registerReferenceAsync = async function (dotNetObject) {
-    ImagePicker.dotNetHelper = dotNetObject;
-};
-
-ImagePicker.loadImageAsync = async function () {
+﻿async function loadImageAsync() {
     const [filePicker] = await window.showOpenFilePicker();
     const file = await filePicker.getFile();
 
@@ -22,4 +16,4 @@ ImagePicker.loadImageAsync = async function () {
         imgUrl: url,
         imgBytes: bytes
     };
-};
+}
