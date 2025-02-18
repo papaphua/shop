@@ -16,9 +16,4 @@ public partial class Sidebar
         _currentUri = NavigationManager.Uri;
         StateHasChanged();
     }
-
-    private void NavigateToPage(string page)
-    {
-        NavigationManager.NavigateTo(page);
-    }
 }

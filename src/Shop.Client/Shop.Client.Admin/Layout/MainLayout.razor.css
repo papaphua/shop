@@ -1,17 +1,18 @@
 .page {
     background-color: rgb(170, 140, 205);
+    margin: -8px;
+}
+
+.layout {
+    display: flex;
+    flex-direction: row;
 }
 
 .sidebar {
-    background-color: rgb(98, 78, 136);
-    border-radius: 15px;
     width: 20%;
-    position: sticky;
-    height: calc(100vh);
+    height: 100vh;
 }
 
 .content-data {
-    border-radius: 15px;
-    padding-left: 10px;
     width: 80%;
 }

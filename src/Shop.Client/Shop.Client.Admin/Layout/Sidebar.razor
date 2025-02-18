@@ -1,41 +1,38 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Admin Panel</a>
+﻿<div class="bg">
+    <div class="title-box">
+        <span class="title-text" @onclick='() => NavigationManager.NavigateTo("/")'>
+            Admin Panel
+        </span>
     </div>
-</div>
-<div class="nav-link-list">
-    <div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick='() => NavigateToPage("")'>
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
+    <div class="content-data">
+        <div class="navigation">
+            <span class="navigation-btn" @onclick='() => NavigationManager.NavigateTo("/")'>
+                <span class="bi bi-house-door-fill-nav-menu"></span>
+                Home
+            </span>
+            <span class="navigation-btn" @onclick='() => NavigationManager.NavigateTo("/products")'>
+                <span class="bi bi-list-nested-nav-menu"></span>
+                Products
+            </span>
+            <span class="navigation-btn" @onclick='() => NavigationManager.NavigateTo("/create-product")'>
+                <span class="bi bi-plus-square-fill-nav-menu"></span>
+                Create new
+            </span>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="products">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"
-                      @onclick='() => NavigateToPage("/products")'></span> Products
-            </NavLink>
+        <div class="auth">
+            <AuthorizeView>
+                <Authorized>
+                    <NavLink href="logout">
+                        <button class="auth-btn">Logout</button>
+                    </NavLink>
+                </Authorized>
+                <NotAuthorized>
+                    @if (!_isOnLoginPage)
+                    {
+                        <button class="auth-btn" @onclick='() => NavigationManager.NavigateTo("/login")'>Login</button>
+                    }
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
-        <div class="nav-item px-3">. 
-            <NavLink class="nav-link" href="create-product">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"
-                      @onclick='() => NavigateToPage("/create-product")'></span> Create new
-            </NavLink>
-        </div>
-    </div>
-    <div class="align-self-center">
-        <AuthorizeView>
-            <Authorized>
-                <NavLink href="logout">
-                    <button class="button button-normal">Logout</button>
-                </NavLink>
-            </Authorized>
-            <NotAuthorized>
-                @if (!_isOnLoginPage)
-                {
-                    <button class="button button-normal" @onclick='() => NavigateToPage("/login")'>Login</button>
-                }
-            </NotAuthorized>
-        </AuthorizeView>
     </div>
 </div>
