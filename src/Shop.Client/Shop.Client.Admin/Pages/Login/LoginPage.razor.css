@@ -48,10 +48,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .body label {
     color: white;
+    margin-bottom: 5px;
 }
 
 label {
@@ -59,12 +61,16 @@ label {
     margin-right: 10px;
 }
 
-.body table {
+.input-group {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    max-width: 400px;
-    margin: auto;
+    margin-bottom: 10px;
 }
 
-.body td {
-    padding: 10px;
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }

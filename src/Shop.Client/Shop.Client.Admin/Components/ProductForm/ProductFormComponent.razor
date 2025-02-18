@@ -7,29 +7,22 @@
                     Edit
                 </div>
                 <div class="body">
-                    <table>
-                        <tr>
-                            <td><label for="name">Name</label></td>
-                            <td>
-                                <InputText id="name" @bind-Value="Product.Name"/>
-                                <ValidationMessage For="() => Product.Name"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="desc">Description</label></td>
-                            <td>
-                                <InputText id="desc" @bind-Value="Product.Description"/>
-                                <ValidationMessage For="() => Product.Description"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="price">Price</label></td>
-                            <td>
-                                <InputNumber id="price" @bind-Value="Product.Price"/>
-                                <ValidationMessage For="() => Product.Price"/>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="input-group">
+                        <label for="name">Name</label>
+                        <InputText id="name" @bind-Value="Product.Name"/>
+                        <ValidationMessage For="() => Product.Name"/>
+                    </div>
+                    <div class="input-group">
+                        <label for="desc">Description</label>
+                        <InputText id="desc" @bind-Value="Product.Description"/>
+                        <ValidationMessage For="() => Product.Description"/>
+                    </div>
+                    <div class="input-group">
+                        <label for="price">Price</label>
+                        <InputNumber id="price" @bind-Value="Product.Price"/>
+                        <ValidationMessage For="() => Product.Price"/>
+                    </div>
+
                     @if (Url != null)
                     {
                         <div>

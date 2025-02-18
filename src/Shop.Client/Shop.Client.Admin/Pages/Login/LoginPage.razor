@@ -9,22 +9,16 @@
                     Login
                 </div>
                 <div class="body">
-                    <table>
-                        <tr>
-                            <td><label for="email">Email</label></td>
-                            <td>
-                                <InputText id="email" @bind-Value="LoginDto.Email"/>
-                                <ValidationMessage class="validation-message" For="() => LoginDto.Email"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="password">Password</label></td>
-                            <td>
-                                <InputText id="password" type="password" @bind-Value="LoginDto.Password"/>
-                                <ValidationMessage class="validation-message" For="() => LoginDto.Password"/>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <InputText id="email" @bind-Value="LoginDto.Email"/>
+                        <ValidationMessage class="validation-message" For="() => LoginDto.Email"/>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <InputText id="password" type="password" @bind-Value="LoginDto.Password"/>
+                        <ValidationMessage class="validation-message" For="() => LoginDto.Password"/>
+                    </div>
                 </div>
 
                 <div class="btn-holder">
