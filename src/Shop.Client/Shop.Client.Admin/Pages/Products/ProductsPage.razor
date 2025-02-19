@@ -6,11 +6,10 @@
 }
 else
 {
-    @_selectedType
     @if (_types.Count > 0)
     {
-        <DropDownComponent Options="_types" @bind-SelectedOption="_selectedType"/>
-        <button @onclick="async () => await LoadNewPage(1)">Update</button>
+        <DropDownComponent Options="_types" @bind-SelectedOption="_selectedType"
+                           OnAfterSelection="async () => await LoadNewPage(1)"/>
     }
 
     <div class="products-container">
