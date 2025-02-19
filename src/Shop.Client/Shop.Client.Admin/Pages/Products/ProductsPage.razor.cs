@@ -20,6 +20,8 @@ public sealed partial class ProductsPage : ComponentBase
     {
         await base.OnInitializedAsync();
 
+        await Task.Delay(5000);
+        
         _types = (await ProductService.GetProductTypesAsync())
             .Select(type => type.Name)
             .ToList();
