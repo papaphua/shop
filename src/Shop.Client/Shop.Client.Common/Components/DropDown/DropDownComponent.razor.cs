@@ -7,6 +7,7 @@ public partial class DropDownComponent<T> : ComponentBase
     [Parameter] [EditorRequired] public required List<T> Options { get; set; }
     [Parameter] public T? SelectedOption { get; set; }
     [Parameter] public EventCallback<T?> SelectedOptionChanged { get; set; }
+    [Parameter] public RenderFragment<T>? ItemTemplate { get; set; }
 
     private bool _showDropdown = false;
     

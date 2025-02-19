@@ -7,7 +7,13 @@
 else
 {
     <div class="filer-row">
-        <DropDownComponent T="string?" Options="_types"SelectedOptionChanged="LoadNewTypeAsync"/>
+        <DropDownComponent T="string?" Options="_types" SelectedOptionChanged="LoadNewTypeAsync">
+            <ItemTemplate Context="option">
+                <div>
+                    <strong>---@option---</strong>
+                </div>
+            </ItemTemplate>
+        </DropDownComponent>
     </div>
 
     <div class="products-container">

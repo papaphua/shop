@@ -19,7 +19,14 @@
             {
                 <div class="@(IsSelectedOption(option) ? "selected-dropdown-item" : "dropdown-item")"
                      @onclick="() => OnSelectedOptionChanged(option)">
-                    @option
+                    @if (ItemTemplate != null)
+                    {
+                        @ItemTemplate(option)
+                    }
+                    else
+                    {
+                        @option
+                    }
                 </div>
             }
         </div>
