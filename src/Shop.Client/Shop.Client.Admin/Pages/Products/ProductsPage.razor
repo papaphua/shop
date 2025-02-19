@@ -10,8 +10,9 @@ else
     @if (_types.Count > 0)
     {
         <DropDownComponent Options="_types" @bind-SelectedOption="_selectedType"/>
+        <button @onclick="async () => await LoadNewPage(1)">Update</button>
     }
-    
+
     <div class="products-container">
         <div class="products-grid">
             @foreach (var product in _list.Items)
@@ -35,7 +36,8 @@ else
                             <div class="product-actions">
                                 <button class="delete-button" @onclick="() => DeleteProduct(product.Id)">Delete</button>
                                 <button class="edit-button"
-                                        @onclick='() => NavigationManager.NavigateTo($"/edit-product/{product.Id}")'>Edit
+                                        @onclick='() => NavigationManager.NavigateTo($"/edit-product/{product.Id}")'>
+                                    Edit
                                 </button>
                             </div>
                         </div>

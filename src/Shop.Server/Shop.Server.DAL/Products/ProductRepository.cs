@@ -9,11 +9,16 @@ public sealed class ProductRepository(ApplicationDbContext dbContext)
 {
     private readonly ApplicationDbContext _dbContext = dbContext;
 
-    public async Task<PagedList<Product>> GetAsync(PagingQuery? paging)
+    public async Task<PagedList<Product>> GetAsync(PagingQuery? paging, string? productType)
     {
         var query = _dbContext.Set<Product>()
-            .OrderBy(product => product.Name);
+            .AsQueryable();
 
+        if (productType != null)
+            query = query.Where(product => product.ProductType.Name == productType);
+
+        query = query.OrderBy(product => product.Name);
+        
         if (paging is { PageNumber: > 0, PageSize: > 0 })
             return await query.ToPagedListAsync(paging);
 

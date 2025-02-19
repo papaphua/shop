@@ -13,9 +13,9 @@ public sealed class ProductController(IProductService productService) : ApiContr
 {
     [Authorize]
     [HttpGet]
-    public async Task<IResult> Get([FromQuery] PagingQuery? query)
+    public async Task<IResult> Get([FromQuery] PagingQuery? query, [FromQuery] string? productType)
     {
-        var result = await productService.GetAsync(query);
+        var result = await productService.GetAsync(query, productType);
 
         return result.IsSuccess
             ? Results.Ok(result.Value)

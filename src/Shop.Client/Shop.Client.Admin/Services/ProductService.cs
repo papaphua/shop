@@ -13,11 +13,24 @@ public sealed class ProductService(HttpClient http) : IProductService
         return (await http.GetFromJsonAsync<ProductDto>($"api/product/{id}"))!;
     }
 
-    public async Task<PagedList<ProductDto>> GetAsync(PagingQuery? query)
+    public async Task<PagedList<ProductDto>> GetAsync(PagingQuery? query, string? productType = null)
     {
-        var queryString = query is null
-            ? string.Empty
-            : $"?PageNumber={query?.PageNumber}&PageSize={query?.PageSize}";
+        var queryString = new System.Text.StringBuilder("?");
+
+        if (query != null)
+        {
+            queryString.Append($"PageNumber={query.PageNumber}&PageSize={query.PageSize}");
+        }
+
+        if (productType != null)
+        {
+            if (query != null)
+            {
+                queryString.Append('&');
+            }
+
+            queryString.Append($"ProductType={productType}");
+        }
 
         return (await http.GetFromJsonAsync<PagedList<ProductDto>>("api/product" + queryString))!;
     }
@@ -36,7 +49,7 @@ public sealed class ProductService(HttpClient http) : IProductService
     {
         await http.PutAsJsonAsync($"api/product/{id}", dto);
     }
-    
+
     public async Task<List<ProductTypeDto>> GetProductTypesAsync()
     {
         return (await http.GetFromJsonAsync<List<ProductTypeDto>>("api/product/types"))!;

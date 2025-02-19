@@ -9,7 +9,7 @@ public interface IProductService
 {
     Task<Result<ProductDto>> GetByIdAsync(int id);
 
-    Task<Result<PagedList<ProductDto>>> GetAsync(PagingQuery? query);
+    Task<Result<PagedList<ProductDto>>> GetAsync(PagingQuery? query, string? productType = null);
 
     Task<Result> CreateAsync(ProductDto dto);
 

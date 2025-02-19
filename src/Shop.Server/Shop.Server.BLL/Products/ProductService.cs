@@ -21,9 +21,9 @@ public sealed class ProductService(
         return mapper.Map<ProductDto>(await productRepository.GetByIdAsync(id));
     }
 
-    public async Task<Result<PagedList<ProductDto>>> GetAsync(PagingQuery? query)
+    public async Task<Result<PagedList<ProductDto>>> GetAsync(PagingQuery? query, string? productType = null)
     {
-        var products = await productRepository.GetAsync(query);
+        var products = await productRepository.GetAsync(query, productType);
         var dtos = products.Items.Select(mapper.Map<ProductDto>);
         return dtos.AsPagedList(products.Metadata);
     }

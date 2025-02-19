@@ -2,7 +2,7 @@
 
 namespace Shop.Shared.ProductTypes;
 
-public sealed class ProductTypeDto : IDropDownOption
+public sealed class ProductTypeDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

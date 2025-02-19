@@ -14,15 +14,15 @@ public sealed partial class ProductsPage : ComponentBase
     [Inject] public required NavigationManager NavigationManager { get; set; }
 
     private PagedList<ProductDto> _list = new();
-    private List<IDropDownOption> _types = [];
-    private int? _selectedType;
+    private List<string> _types = [];
+    private string? _selectedType;
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
 
         _types = (await ProductService.GetProductTypesAsync())
-            .Cast<IDropDownOption>()
+            .Select(type => type.Name)
             .ToList();
 
         await LoadNewPage(1);
@@ -31,7 +31,7 @@ public sealed partial class ProductsPage : ComponentBase
     private async Task LoadNewPage(int pageNumber)
     {
         var query = new PagingQuery(pageNumber, PageSize);
-        _list = await ProductService.GetAsync(query);
+        _list = await ProductService.GetAsync(query, _selectedType);
     }
 
     private async Task DeleteProduct(int productId)

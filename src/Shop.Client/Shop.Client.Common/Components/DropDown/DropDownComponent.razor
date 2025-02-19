@@ -1,7 +1,9 @@
-﻿<select @onchange="@(async args => await OnSelectedOptionChanged(args))">
-    <option value="0" selected>All</option>
+﻿@typeparam T
+
+<select @onchange="OnSelectedOptionChanged">
+    <option value="" selected>All</option>
     @foreach (var option in Options)
     {
-        <option value="@option.Id">@option.Name</option>
+        <option value="@option">@option</option>
     }
 </select>
