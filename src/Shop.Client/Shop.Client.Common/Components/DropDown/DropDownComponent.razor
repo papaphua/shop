@@ -1,7 +1,7 @@
 ﻿@typeparam T
 
 <div class="dropdown">
-    <div class="dropdown-toggle" @onclick="ToggleDropdown">
+    <div class="dropdown-toggle @(_showDropdown ? "dropdown-toggle-open" : "dropdown-toggle-close")" @onclick="ToggleDropdown">
         @if (SelectedOption == null)
         {
             <span>Select product type</span>
@@ -10,6 +10,7 @@
         {
             <span>@SelectedOption</span>
         }
+        <span class="dropdown-arrow @(_showDropdown ? "rotate-down" : "rotate-up")"></span>
     </div>
     @if (_showDropdown)
     {
