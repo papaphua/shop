@@ -1,20 +1,14 @@
 ﻿@page "/products"
 
-@if (_list.Items.Count < 1)
+@if (IsLoading())
 {
     <LoadCircleComponent/>
 }
 else
 {
-    @if (_types.Count > 0)
-    {
-        <div style="margin: 10px">
-            <DropDownComponent T="string?" Options="_types"
-                               SelectedOptionChanged="async value => { 
-                                   _selectedType = value;
-                                    await LoadNewPageAsync(1); }"/>
-        </div>
-    }
+    <div class="filer-row">
+        <DropDownComponent T="string?" Options="_types"SelectedOptionChanged="LoadNewTypeAsync"/>
+    </div>
 
     <div class="products-container">
         <div class="products-grid">

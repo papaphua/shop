@@ -29,6 +29,17 @@ public sealed partial class ProductsPage : ComponentBase
         await LoadNewPageAsync(1);
     }
 
+    private bool IsLoading()
+    {
+        return _list.Items.Count == 0 && _types.Count == 0;
+    }
+    
+    private async Task LoadNewTypeAsync(string? type)
+    {
+        _selectedType = type;
+        await LoadNewPageAsync(1);
+    }
+    
     private async Task LoadNewPageAsync(int pageNumber)
     {
         var query = new PagingQuery(pageNumber, PageSize);
