@@ -1,8 +1,8 @@
 ﻿.dropdown {
-    padding: 10px;
     position: relative;
     display: inline-block;
     cursor: pointer;
+    width: 200px;
 }
 
 .dropdown-toggle {
@@ -10,7 +10,8 @@
     padding: 10px;
     display: flex;
     align-items: center;
-    min-width: 100%;
+    justify-content: space-between;
+    width: 200px;
 }
 
 .dropdown-toggle-close {
@@ -25,27 +26,23 @@
 }
 
 .dropdown-content {
+    padding: 10px;
     border-width: 0 1px 1px 1px;
     border-style: none solid solid solid;
     border-radius: 0 0 15px 15px;
     position: absolute;
-    min-width: 100%;
     background-color: rgb(241, 229, 209);
+    width: 200px;
 }
 
-.dropdown-item {
-    margin: 5px;
+.dropdown-item, .selected-dropdown-item {
     border-radius: 10px;
     padding: 10px;
     cursor: pointer;
 }
 
 .selected-dropdown-item {
-    margin: 5px;
-    border-radius: 10px;
     background-color: rgb(230, 217, 162);
-    padding: 10px;
-    cursor: pointer;
 }
 
 .dropdown-item:hover {
