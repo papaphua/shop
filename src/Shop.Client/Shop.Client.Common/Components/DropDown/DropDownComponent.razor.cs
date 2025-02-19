@@ -8,13 +8,17 @@ public partial class DropDownComponent<T> : ComponentBase
     [Parameter] public T? SelectedOption { get; set; }
     [Parameter] public EventCallback<T?> SelectedOptionChanged { get; set; }
 
+    private bool _showDropdown = false;
 
-    private async Task OnSelectedOptionChanged(ChangeEventArgs args)
+    private void ToggleDropdown()
     {
-        if (args.Value == null) return;
+        _showDropdown = !_showDropdown;
+    }
 
-        var selectedOption = (T?)args.Value;
-        SelectedOption = selectedOption ?? default;
-        await SelectedOptionChanged.InvokeAsync(selectedOption);
+    private async Task OnSelectedOptionChanged(T? option)
+    {
+        SelectedOption = option;
+        _showDropdown = false;
+        await SelectedOptionChanged.InvokeAsync(option);
     }
 }

@@ -1,9 +1,28 @@
 ﻿@typeparam T
 
-<select @onchange="OnSelectedOptionChanged">
-    <option value="" selected>All</option>
-    @foreach (var option in Options)
+<div class="dropdown">
+    <div class="dropdown-toggle" @onclick="ToggleDropdown">
+        @if (SelectedOption == null)
+        {
+            <span>All</span>
+        }
+        else
+        {
+            <span>@SelectedOption</span>
+        }
+    </div>
+    @if (_showDropdown)
     {
-        <option value="@option">@option</option>
+        <div class="dropdown-content">
+            <div class="dropdown-item" @onclick="() => OnSelectedOptionChanged(default)">
+                All
+            </div>
+            @foreach (var option in Options)
+            {
+                <div class="dropdown-item" @onclick="() => OnSelectedOptionChanged(option)">
+                    @option
+                </div>
+            }
+        </div>
     }
-</select>
+</div>
