@@ -9,14 +9,14 @@ public sealed partial class ProductsPage : ComponentBase
 {
     private const int PageSize = 6;
 
+    [Inject] public required IProductService ProductService { get; set; }
+    [Inject] public required NavigationManager NavigationManager { get; set; }
+
     private PagedList<ProductDto> _list = new();
     private string? _selectedType;
     private List<string> _types = [];
     private bool _isLoading;
-
-    [Inject] public required IProductService ProductService { get; set; }
-    [Inject] public required NavigationManager NavigationManager { get; set; }
-
+    
     protected override async Task OnInitializedAsync()
     {
         _isLoading = true;
