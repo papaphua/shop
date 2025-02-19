@@ -9,8 +9,10 @@ else
     @if (_types.Count > 0)
     {
         <div style="margin: 10px">
-            <DropDownComponent Options="_types" @bind-SelectedOption="_selectedType"
-                               OnAfterSelection="() => LoadNewPage(1)"/>
+            <DropDownComponent T="string?" Options="_types"
+                               SelectedOptionChanged="async value => { 
+                                   _selectedType = value;
+                                    await LoadNewPageAsync(1); }"/>
         </div>
     }
 
@@ -51,13 +53,14 @@ else
     <div class="pagination-container">
         @if (_list.Metadata.HasPreviousPage)
         {
-            <button class="pagination-button" @onclick="() => LoadNewPage(_list.Metadata.PageNumber - 1)">Previous
+            <button class="pagination-button" @onclick="() => LoadNewPageAsync(_list.Metadata.PageNumber - 1)">Previous
             </button>
         }
         <span class="page-number">Page @_list.Metadata.PageNumber of @_list.Metadata.TotalPages</span>
         @if (_list.Metadata.HasNextPage)
         {
-            <button class="pagination-button" @onclick="() => LoadNewPage(_list.Metadata.PageNumber + 1)">Next</button>
+            <button class="pagination-button" @onclick="() => LoadNewPageAsync(_list.Metadata.PageNumber + 1)">Next
+            </button>
         }
     </div>
 }

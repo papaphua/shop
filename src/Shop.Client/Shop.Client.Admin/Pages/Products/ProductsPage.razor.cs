@@ -24,10 +24,10 @@ public sealed partial class ProductsPage : ComponentBase
             .Select(type => type.Name)
             .ToList();
 
-        await LoadNewPage(1);
+        await LoadNewPageAsync(1);
     }
 
-    private async Task LoadNewPage(int pageNumber)
+    private async Task LoadNewPageAsync(int pageNumber)
     {
         var query = new PagingQuery(pageNumber, PageSize);
         _list = await ProductService.GetAsync(query, _selectedType);
@@ -36,6 +36,6 @@ public sealed partial class ProductsPage : ComponentBase
     private async Task DeleteProduct(int productId)
     {
         await ProductService.RemoveAsync(productId);
-        await LoadNewPage(_list.Metadata.PageNumber);
+        await LoadNewPageAsync(_list.Metadata.PageNumber);
     }
 }
