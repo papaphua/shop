@@ -5,7 +5,7 @@ using Shop.Shared.Products;
 
 namespace Shop.Client.Admin.Components.ProductForm;
 
-public partial class ProductFormComponent : ComponentBase
+public partial class ProductFormComponent
 {
     [Inject] public required IJSRuntime JsRuntime { get; set; }
 
@@ -15,20 +15,17 @@ public partial class ProductFormComponent : ComponentBase
     private bool _isModalOpen;
     private DotNetObjectReference<ProductFormComponent>? _reference;
     private string? _url;
-    
+
     private async Task HandleSubmit()
     {
         await OnProductSaved.InvokeAsync(Product);
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override void OnAfterRender(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
+        if (!firstRender) return;
 
-        if (firstRender)
-        {
-            _reference = DotNetObjectReference.Create(this);
-        }
+        _reference = DotNetObjectReference.Create(this);
     }
 
     private async Task InvokeLoadImageAsync()

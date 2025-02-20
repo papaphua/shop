@@ -4,7 +4,7 @@ using Shop.Client.Admin.Auth;
 
 namespace Shop.Client.Admin.Pages.Logout;
 
-public sealed partial class LogoutPage : ComponentBase
+public partial class LogoutPage
 {
     [Inject] public required AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     [Inject] public required NavigationManager NavigationManager { get; set; }

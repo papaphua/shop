@@ -6,12 +6,12 @@ using Shop.Shared.Users;
 
 namespace Shop.Client.Admin.Pages.Login;
 
-public sealed partial class LoginPage : ComponentBase
+public partial class LoginPage
 {
     [Inject] public required IUserService UserService { get; set; }
     [Inject] public required NavigationManager NavigationManager { get; set; }
     [Inject] public required AuthenticationStateProvider AuthenticationStateProvider { get; set; }
-    
+
     private UserLoginDto LoginDto { get; } = new();
 
     private async Task HandleLoginAsync()

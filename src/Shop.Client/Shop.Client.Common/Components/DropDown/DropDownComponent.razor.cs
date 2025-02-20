@@ -2,7 +2,7 @@
 
 namespace Shop.Client.Common.Components.DropDown;
 
-public partial class DropDownComponent<T> : ComponentBase
+public partial class DropDownComponent<T>
 {
     [Parameter] [EditorRequired] public required List<T> Options { get; set; }
     [Parameter] public T? SelectedOption { get; set; }
@@ -10,7 +10,7 @@ public partial class DropDownComponent<T> : ComponentBase
     [Parameter] public RenderFragment<T>? ItemTemplate { get; set; }
 
     private bool _showDropdown = false;
-    
+
     private void ToggleDropdown()
     {
         _showDropdown = !_showDropdown;

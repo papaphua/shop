@@ -5,24 +5,22 @@ using Shop.Shared.Products;
 
 namespace Shop.Client.Admin.Pages.Products;
 
-public sealed partial class ProductsPage : ComponentBase
+public partial class ProductsPage
 {
     private const int PageSize = 6;
 
     [Inject] public required IProductService ProductService { get; set; }
     [Inject] public required NavigationManager NavigationManager { get; set; }
 
+    private bool _isLoading;
     private PagedList<ProductDto> _list = new();
     private string? _selectedType;
     private List<string> _types = [];
-    private bool _isLoading;
-    
+
     protected override async Task OnInitializedAsync()
     {
         _isLoading = true;
         StateHasChanged();
-
-        await base.OnInitializedAsync();
 
         _types = (await ProductService.GetProductTypesAsync())
             .Select(type => type.Name)
