@@ -8,12 +8,12 @@ namespace Shop.Client.Admin.Services;
 
 public sealed class ProductService(HttpClient http) : IProductService
 {
-    public async Task<ProductDto> GetByIdAsync(int id)
+    public Task<ProductDto> GetByIdAsync(int id)
     {
-        return (await http.GetFromJsonAsync<ProductDto>($"api/product/{id}"))!;
+        return http.GetFromJsonAsync<ProductDto>($"api/product/{id}")!;
     }
 
-    public async Task<PagedList<ProductDto>> GetAsync(PagingQuery? query, string? productType = null)
+    public Task<PagedList<ProductDto>> GetAsync(PagingQuery? query, string? productType = null)
     {
         var queryString = new System.Text.StringBuilder("?");
 
@@ -32,26 +32,26 @@ public sealed class ProductService(HttpClient http) : IProductService
             queryString.Append($"ProductType={productType}");
         }
 
-        return (await http.GetFromJsonAsync<PagedList<ProductDto>>("api/product" + queryString))!;
+        return http.GetFromJsonAsync<PagedList<ProductDto>>("api/product" + queryString)!;
     }
 
-    public async Task CreateAsync(ProductDto dto)
+    public Task CreateAsync(ProductDto dto)
     {
-        await http.PostAsJsonAsync("api/product", dto);
+        return http.PostAsJsonAsync("api/product", dto);
     }
 
-    public async Task RemoveAsync(int id)
+    public Task RemoveAsync(int id)
     {
-        await http.DeleteAsync($"api/product/{id}");
+        return http.DeleteAsync($"api/product/{id}");
     }
 
-    public async Task UpdateAsync(int id, ProductDto dto)
+    public Task UpdateAsync(int id, ProductDto dto)
     {
-        await http.PutAsJsonAsync($"api/product/{id}", dto);
+        return http.PutAsJsonAsync($"api/product/{id}", dto);
     }
 
-    public async Task<List<ProductTypeDto>> GetProductTypesAsync()
+    public Task<List<ProductTypeDto>> GetProductTypesAsync()
     {
-        return (await http.GetFromJsonAsync<List<ProductTypeDto>>("api/product/types"))!;
+        return http.GetFromJsonAsync<List<ProductTypeDto>>("api/product/types")!;
     }
 }
